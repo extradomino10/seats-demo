@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Seats Chart</title>
+
+	<style type="text/css">
+		section{width:360px;margin:20px auto;font-family:Helvetica}section .seats{display:flex;flex-wrap:wrap;justify-content:center;margin-top:30px}section .seat{margin:2px;padding:6px;background:#c3b1a3;color:#fff;border-radius:2px;width:19px;text-align:center;cursor:pointer;transition:all .4s ease}section .seat.aisle-right{margin-right:10px}section .seat.aisle-left{margin-left:10px}section .seat.aisle-top{margin-top:10px}section .total button{border:none;border-radius:2px;color:#fff;background-color:#666;width:280px;height:32px;display:block;margin-top:10px;font-size:14px;outline:0;text-transform:uppercase;cursor:pointer;transition:all .6s ease}section .legend{float:right;text-align:right;display:flex;list-style:none;margin:0}.legend li:first-child{margin-right:12px}section .legend li:after{content:"";display:inline-block;width:16px;height:16px;background-color:#c3b1a3;border-radius:2px;position:relative;right:-5px;top:3px}section .legend li:last-child:after,section .seat.taken{background-color:#666}section .seat.selected{background-color:#b58300}
+	</style>
+</head>
+<body>
+
+<section>
+	<ul class="legend">
+		<li>available</li>
+		<li>taken</li>
+	</ul>
+	<h3>Select your seats</h3>
+	<div class="seats"></div>
+</section>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script type="text/javascript">
+'use strict';for(var seats=[],initPos=65,i=0;78>i;i++){var row=String.fromCharCode(initPos+Math.floor(i/9)),taken=0==i%7||0==i%6?'taken':'',aisle=1==i%9?'aisle-right':7==i%9?'aisle-left':'';'I'===row&&(aisle='aisle-top'),seats.push('<div class="seat '+taken+' '+aisle+'">'+row+(i%9+1)+'</div>')}$('.seats').html(seats.join('')),$('.seats').on('click','.seat',function(a){var b=$(a.currentTarget);if(!b.hasClass('taken')){b.toggleClass('selected');var c=b.parent().find('.selected'),d=5.44*c.length;$('.total span').text(('$'+d).substring(0,6))}});
+
+</script>
+
+</body>
+</html>
